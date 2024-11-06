@@ -12,4 +12,6 @@
 /dataSources/
 /dataSources.local.xml
 
-/P
+../../PDF-MultiTool/obj/
+../../PDF-MultiTool/bin/
+
