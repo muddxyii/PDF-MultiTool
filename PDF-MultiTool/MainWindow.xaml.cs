@@ -99,7 +99,6 @@ public partial class MainWindow : Window
                 {
                     MessageBox.Show("No fillable fields found in the PDF.", "Information", 
                         MessageBoxButton.OK, MessageBoxImage.Information);
-                    return;
                 }
             }
         }
@@ -147,7 +146,61 @@ public partial class MainWindow : Window
             return;
         }
 
-        // TODO: Implement PDF conversion logic here
-        MessageBox.Show("PDF conversion operation is currently not implemented.");
+        try
+        {
+            // create new output path, to save the old pdf
+            string outputPath = Path.Combine(
+                Path.GetDirectoryName(_newPdfPath),
+                Path.GetFileNameWithoutExtension(_newPdfPath) + "_converted.pdf");
+            
+            // get old pdf values
+            Dictionary<string, string> oldValues = new Dictionary<string, string>();
+            using (var reader = new PdfReader(_oldPdfPath))
+            using (var oldDoc = new PdfDocument(reader))
+            {
+                var oldForm = PdfAcroForm.GetAcroForm(oldDoc, false);
+                if (oldForm != null)
+                {
+                    foreach (var field in oldForm.GetFormFields())
+                    {
+                        oldValues[field.Key] = field.Value.GetValueAsString();
+                    }
+                }
+            }
+            
+            // write old pdf values to new pdf
+            using (var reader = new PdfReader(_newPdfPath))
+            using (var writer = new PdfWriter(outputPath))
+            using (var pdfDoc = new PdfDocument(reader, writer))
+            {
+                var newForm = PdfAcroForm.GetAcroForm(pdfDoc, false);
+                int fieldsConverted = 0;
+                
+                if (newForm != null && newForm.GetFormFields().Count > 0)
+                {
+                    foreach (var field in newForm.GetFormFields())
+                    {
+                        if (oldValues.ContainsKey(field.Key) && !string.IsNullOrEmpty(oldValues[field.Key]))
+                        {
+                            field.Value.SetValue(oldValues[field.Key]);
+                            fieldsConverted++;
+                        }
+                    }
+                    MessageBox.Show($"Successfully converted {fieldsConverted} fields.\n\n" +
+                                    $"New version saved to:\n{outputPath}", "Success", 
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No fillable fields found in the PDF.", "Information", 
+                        MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Error clearing PDF fields: {ex.Message}", "Error", 
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }
     }
 }
