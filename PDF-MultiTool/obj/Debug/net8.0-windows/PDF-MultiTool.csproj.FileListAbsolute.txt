@@ -40,3 +40,4 @@ C:\Users\Niksp\RiderProjects\PDF-MultiTool\PDF-MultiTool\bin\Debug\net8.0-window
 C:\Users\Niksp\RiderProjects\PDF-MultiTool\PDF-MultiTool\obj\Debug\net8.0-windows\PDF-MultiTool.csproj.AssemblyReference.cache
 C:\Users\Niksp\RiderProjects\PDF-MultiTool\PDF-MultiTool\obj\Debug\net8.0-windows\PDF-Mult.6D4AE552.Up2Date
 C:\Users\Niksp\RiderProjects\PDF-MultiTool\PDF-MultiTool\bin\Debug\net8.0-windows\BouncyCastle.Crypto.dll
+C:\Users\Niksp\RiderProjects\PDF-MultiTool\PDF-MultiTool\obj\Debug\net8.0-windows\PDF-MultiTool.sourcelink.json

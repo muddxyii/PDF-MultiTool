@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PDF-MultiTool")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49fad9fd8fa2f7053e77d4d58e5d41c8bb45bc38")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3af6edff49d03e87356f447c3252d2798601f36a")]
 [assembly: System.Reflection.AssemblyProductAttribute("PDF-MultiTool")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PDF-MultiTool")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -2,17 +2,16 @@
 using System.Windows;
 using System.Windows.Controls;
 using iText.Forms;
-using iText.Forms.Fields;
 using iText.Kernel.Pdf;
 using Microsoft.Win32;
 
 namespace PDF_MultiTool;
 
-public partial class MainWindow : Window
+public partial class MainWindow
 {
-    private string _selectedPdfPath;
-    private string _oldPdfPath;
-    private string _newPdfPath;
+    private string? _selectedPdfPath;
+    private string? _oldPdfPath;
+    private string? _newPdfPath;
     
     public MainWindow()
     {
@@ -58,7 +57,7 @@ public partial class MainWindow : Window
         try
         {
             string outputPath = Path.Combine(
-                Path.GetDirectoryName(_selectedPdfPath),
+                Path.GetDirectoryName(_selectedPdfPath) ?? throw new InvalidOperationException(),
                 Path.GetFileNameWithoutExtension(_selectedPdfPath) + "_cleared.pdf");
 
             using (var reader = new PdfReader(_selectedPdfPath))
@@ -150,7 +149,7 @@ public partial class MainWindow : Window
         {
             // create new output path, to save the old pdf
             string outputPath = Path.Combine(
-                Path.GetDirectoryName(_newPdfPath),
+                Path.GetDirectoryName(_newPdfPath) ?? throw new InvalidOperationException(),
                 Path.GetFileNameWithoutExtension(_newPdfPath) + "_converted.pdf");
             
             // get old pdf values
