@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using iText.Forms;
@@ -318,8 +317,10 @@ public partial class MainWindow
 
     private void ManageIgnoreFields_Click(object sender, RoutedEventArgs e)
     {
-        var settingsWindow = new IgnoreFieldsWindow(_configuration, _ignoreFields);
-        settingsWindow.Owner = this;
+        var settingsWindow = new IgnoreFieldsWindow(_configuration, _ignoreFields)
+        {
+            Owner = this
+        };
         settingsWindow.ShowDialog();
         
         // Reload ignore fields after window closes

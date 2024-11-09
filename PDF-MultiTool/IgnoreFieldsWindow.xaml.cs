@@ -5,12 +5,11 @@ using System.IO;
 using System.Text.Json;
 using System.Windows.Controls;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PDF_MultiTool;
 
-public partial class IgnoreFieldsWindow : Window
+public partial class IgnoreFieldsWindow
 {
     private readonly ObservableCollection<string> _fields;
     private readonly IConfiguration _configuration;
@@ -49,7 +48,7 @@ public partial class IgnoreFieldsWindow : Window
 
     private void RemoveField_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is string fieldName)
+        if (sender is Button { Tag: string fieldName })
         {
             _fields.Remove(fieldName);
             SaveFields();
