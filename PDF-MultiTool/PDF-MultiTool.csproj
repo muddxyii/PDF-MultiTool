@@ -11,6 +11,13 @@
 
     <ItemGroup>
       <PackageReference Include="itext7" Version="7.2.6" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="bin\Debug\net8.0-windows\appsettings.json" />
+      <None Include="bin\Release\net8.0-windows\appsettings.json" />
     </ItemGroup>
 
 </Project>
