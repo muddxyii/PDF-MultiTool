@@ -143,57 +143,6 @@ public partial class MainWindow
         }
     }
     
-    private void SaveIgnoreFields()
-    {
-        string configPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
-        
-        // Read existing config
-        var jsonString = File.ReadAllText(configPath);
-        var jsonDoc = JsonDocument.Parse(jsonString);
-        var root = jsonDoc.RootElement;
-        
-        // Create new config object
-        var newConfig = new Dictionary<string, object>
-        {
-            {
-                "PdfSettings", new Dictionary<string, object>
-                {
-                    { "IgnoreFields", _ignoreFields.ToArray() }
-                }
-            }
-        };
-
-        // Preserve other settings if they exist
-        foreach (var property in root.EnumerateObject())
-        {
-            if (property.Name != "PdfSettings")
-            {
-                newConfig[property.Name] = JsonSerializer.Deserialize<object>(property.Value.GetRawText()) ?? throw new InvalidOperationException();
-            }
-        }
-
-        // Save back to file
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string newJson = JsonSerializer.Serialize(newConfig, options);
-        File.WriteAllText(configPath, newJson);
-    }
-    
-    public void AddIgnoreField(String fieldName)
-    {
-        _ignoreFields.Add(fieldName);
-    }
-
-    public void RemoveIgnoreField(String fieldName)
-    {
-        _ignoreFields.Remove(fieldName);
-    }
-
-    public void ClearIgnoreFields()
-    {
-        _ignoreFields.Clear();
-    }
-    
-    
     private void SelectPartialPDF_Click(object sender, RoutedEventArgs e)
     {
         var openFileDialog = new OpenFileDialog
@@ -365,5 +314,15 @@ public partial class MainWindow
             MessageBox.Show($"Error clearing PDF fields: {ex.Message}", "Error", 
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
+    }
+
+    private void ManageIgnoreFields_Click(object sender, RoutedEventArgs e)
+    {
+        var settingsWindow = new IgnoreFieldsWindow(_configuration, _ignoreFields);
+        settingsWindow.Owner = this;
+        settingsWindow.ShowDialog();
+        
+        // Reload ignore fields after window closes
+        LoadIgnoreFields();
     }
 }

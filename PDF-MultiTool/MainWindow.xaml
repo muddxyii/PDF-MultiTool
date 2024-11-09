@@ -45,11 +45,18 @@
                     Grid.Row="1"
                     Margin="10"
                     Visibility="Collapsed">
-                <Button Content="Select PDF"
-                        Click="SelectPartialPDF_Click"
-                        Padding="10,5"
-                        HorizontalAlignment="Left"
-                        Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Button Content="Select PDF"
+                                Click="SelectPartialPDF_Click"
+                                Padding="10,5"
+                                HorizontalAlignment="Left"
+                                Margin="0,0,10,0"/>
+                        <Button Content="Manage Ignore Fields"
+                                Click="ManageIgnoreFields_Click"
+                                Padding="10,5"
+                                HorizontalAlignment="Left"/>
+                </StackPanel>
+                
                 <TextBlock x:Name="SelectedPartialPdfPath"
                            Text="No file selected"
                            Margin="0,0,0,10"/>
