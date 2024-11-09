@@ -10,6 +10,7 @@ namespace PDF_MultiTool;
 public partial class MainWindow
 {
     private string? _selectedPdfPath;
+    private string? _selectedPartialPdfPath;
     private string? _oldPdfPath;
     private string? _newPdfPath;
     
@@ -107,6 +108,25 @@ public partial class MainWindow
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
+    }
+    
+    private void SelectPartialPDF_Click(object sender, RoutedEventArgs e)
+    {
+        var openFileDialog = new OpenFileDialog
+        {
+            Filter = "PDF files (*.pdf)|*.pdf|All files (*.*)|*.*"
+        };
+
+        if (openFileDialog.ShowDialog() == true)
+        {
+            _selectedPartialPdfPath = openFileDialog.FileName;
+            SelectedPartialPdfPath.Text = $"Selected: {_selectedPdfPath}";
+        }
+    }
+    
+    private void PartialClearPDF_Click(object sender, RoutedEventArgs e)
+    {
+        throw new NotImplementedException();
     }
 
     private void SelectOldPDF_Click(object sender, RoutedEventArgs e)
