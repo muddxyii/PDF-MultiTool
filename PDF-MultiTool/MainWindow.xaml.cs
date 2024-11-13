@@ -14,7 +14,7 @@ public partial class MainWindow
 
     private readonly IConfiguration _configuration;
     private string? _selectedPartialPdfPath;
-    private HashSet<String> _ignoreFields = new HashSet<String>(StringComparer.Ordinal);
+    private HashSet<String> _ignoreFields = new HashSet<String>(StringComparer.OrdinalIgnoreCase);
     
     private string? _oldPdfPath;
     private string? _newPdfPath;
@@ -125,7 +125,7 @@ public partial class MainWindow
     
     private void LoadIgnoreFields()
     {
-        _ignoreFields = new HashSet<string>(StringComparer.Ordinal);
+        _ignoreFields = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         
         // Load from settings
         var ignoreFields = _configuration.GetSection("PdfSettings:IgnoreFields")
