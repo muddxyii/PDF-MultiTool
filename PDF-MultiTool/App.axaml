@@ -2,9 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="PDF_MultiTool.App"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <FluentTheme />
+        <SimpleTheme />
+        <StyleInclude Source="avares://Citrus.Avalonia/Rust.xaml" />
+
+        <!-- To use other themes: -->
+        <!-- <StyleInclude Source="avares://Citrus.Avalonia/Sea.xaml"/> -->
+        <!-- <StyleInclude Source="avares://Citrus.Avalonia/Citrus.xaml"/> -->
+        <!-- <StyleInclude Source="avares://Citrus.Avalonia/Candy.xaml"/> -->
+        <!-- <StyleInclude Source="avares://Citrus.Avalonia/Magma.xaml"/> -->
     </Application.Styles>
 </Application>
