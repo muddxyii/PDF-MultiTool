@@ -51,7 +51,7 @@
         <!-- Partial Clear PDF Panel -->
         <ui:Card Grid.Row="2" Margin="8">
             <StackPanel x:Name="PartialClearPdfPanel" Margin="8"
-                        Visibility="Visible">
+                        Visibility="Collapsed">
                 <StackPanel Orientation="Horizontal" Margin="8">
                     <ui:Button Icon="Document24"
                                Content="Select PDF"
@@ -76,23 +76,24 @@
         <!-- Convert PDF Panel -->
         <ui:Card Grid.Row="2" Margin="8">
             <StackPanel x:Name="ConvertPdfPanel"
-                        Visibility="Collapsed">
+                        Visibility="Visible">
                 <ui:Button Icon="Document24"
                            Content="Select Old PDF"
                            Click="SelectOldPDF_Click"
-                           Margin="0,0,0,8" />
+                           Margin="8" />
                 <TextBlock x:Name="OldPdfPath"
                            Text="No old file selected"
-                           Margin="0,0,0,8" />
+                           Margin="8" />
                 <ui:Button Icon="Document24"
                            Content="Select New PDF"
                            Click="SelectNewPDF_Click"
-                           Margin="0,0,0,8" />
+                           Margin="8" />
                 <TextBlock x:Name="NewPdfPath"
                            Text="No new file selected"
-                           Margin="0,0,0,8" />
+                           Margin="8" />
                 <ui:Button Icon="ArrowExport24"
                            Content="Convert"
+                           Margin="8"
                            Click="ConvertPDF_Click" />
             </StackPanel>
         </ui:Card>
