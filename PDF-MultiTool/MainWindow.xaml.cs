@@ -81,11 +81,11 @@ public partial class MainWindow
             {
                 var form = PdfAcroForm.GetAcroForm(pdfDoc, false);
 
-                if (form != null && form.GetFormFields().Count > 0)
+                if (form != null && form.GetAllFormFields().Count > 0)
                 {
                     int fieldsCleared = 0;
                     
-                    foreach (var field in form.GetFormFields())
+                    foreach (var field in form.GetAllFormFields())
                     {
                         var fieldType = field.Value.GetFormType();
                         switch (fieldType.ToString())
@@ -176,11 +176,11 @@ public partial class MainWindow
             {
                 var form = PdfAcroForm.GetAcroForm(pdfDoc, false);
 
-                if (form != null && form.GetFormFields().Count > 0)
+                if (form != null && form.GetAllFormFields().Count > 0)
                 {
                     int fieldsCleared = 0;
                     
-                    foreach (var field in form.GetFormFields())
+                    foreach (var field in form.GetAllFormFields())
                     {
                         if (!_ignoreFields.Contains(field.Value.GetFieldName().ToString()))
                         {
@@ -272,7 +272,7 @@ public partial class MainWindow
                 var oldForm = PdfAcroForm.GetAcroForm(oldDoc, false);
                 if (oldForm != null)
                 {
-                    foreach (var field in oldForm.GetFormFields())
+                    foreach (var field in oldForm.GetAllFormFields())
                     {
                         oldValues[field.Key] = field.Value.GetValueAsString();
                     }
@@ -287,9 +287,9 @@ public partial class MainWindow
                 var newForm = PdfAcroForm.GetAcroForm(pdfDoc, false);
                 int fieldsConverted = 0;
                 
-                if (newForm != null && newForm.GetFormFields().Count > 0)
+                if (newForm != null && newForm.GetAllFormFields().Count > 0)
                 {
-                    foreach (var field in newForm.GetFormFields())
+                    foreach (var field in newForm.GetAllFormFields())
                     {
                         if (oldValues.ContainsKey(field.Key) && !string.IsNullOrEmpty(oldValues[field.Key]))
                         {
