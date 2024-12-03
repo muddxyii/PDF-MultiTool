@@ -1,91 +1,99 @@
 ﻿<ui:FluentWindow x:Class="PDF_MultiTool.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        mc:Ignorable="d"
-        Title="PDF MultiTool v1.2.5" Height="450" Width="600">
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                 mc:Ignorable="d"
+                 Title="PDF MultiTool v1.2.5" Height="450" Width="600"
+                 Background="{ui:ThemeResource ApplicationBackgroundBrush}">
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ui:TitleBar Title="PDF MultiTool v1.2.5"/>
-        
+        <ui:TitleBar Title="PDF MultiTool v1.2.5" />
+
         <ui:Card Grid.Row="1" Margin="8">
             <ComboBox x:Name="OperationComboBox"
-                      Width="200"
+                      HorizontalAlignment="Left"
+                      Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+                      Width="Auto"
+                      MinWidth="200"
                       SelectionChanged="OperationComboBox_OnSelectionChanged">
                 <ComboBoxItem>Clear PDF</ComboBoxItem>
                 <ComboBoxItem>Partial Clear PDF</ComboBoxItem>
                 <ComboBoxItem>Convert PDF Details</ComboBoxItem>
             </ComboBox>
         </ui:Card>
-        
+
         <!-- Clear PDF Panel -->
         <ui:Card Grid.Row="2" Margin="8">
             <StackPanel x:Name="ClearPdfPanel"
                         Visibility="Collapsed">
-                <ui:Button Icon="Document24" 
-                          Content="Select PDF"
-                          Click="SelectPDF_Click"
-                          Margin="0,0,0,8"/>
+                <ui:Button Icon="Document24"
+                           Content="Select PDF"
+                           Click="SelectPDF_Click"
+                           Margin="8" />
                 <TextBlock x:Name="SelectedPdfPath"
                            Text="No file selected"
-                           Margin="0,0,0,8"/>
-                <ui:Button Icon="ArrowExport24" 
-                          Content="Clear PDF"
-                          Click="ClearPDF_Click"/>
+                           Margin="8" />
+                <ui:Button Icon="ArrowExport24"
+                           Content="Clear PDF"
+                           Click="ClearPDF_Click"
+                           Margin="8" />
             </StackPanel>
         </ui:Card>
-        
+
         <!-- Partial Clear PDF Panel -->
         <ui:Card Grid.Row="2" Margin="8">
-            <StackPanel x:Name="PartialClearPdfPanel"
-                        Visibility="Collapsed">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                    <ui:Button Icon="Document24" 
-                              Content="Select PDF"
-                              Click="SelectPartialPDF_Click"
-                              Margin="0,0,8,0"/>
-                    <ui:Button Icon="Settings24" 
-                              Content="Manage Ignore Fields"
-                              Click="ManageIgnoreFields_Click"/>
+            <StackPanel x:Name="PartialClearPdfPanel" Margin="8"
+                        Visibility="Visible">
+                <StackPanel Orientation="Horizontal" Margin="8">
+                    <ui:Button Icon="Document24"
+                               Content="Select PDF"
+                               Click="SelectPartialPDF_Click"
+                               Margin="8" />
+                    <ui:Button Icon="Settings24"
+                               Content="Manage Ignore Fields"
+                               Click="ManageIgnoreFields_Click"
+                               Margin="8" />
                 </StackPanel>
-                
+
                 <TextBlock x:Name="SelectedPartialPdfPath"
                            Text="No file selected"
-                           Margin="0,0,0,8"/>
-                <ui:Button Icon="ArrowExport24" 
-                          Content="Partial Clear PDF"
-                          Click="PartialClearPDF_Click"/>
+                           Margin="8" />
+                <ui:Button Icon="ArrowExport24"
+                           Content="Partial Clear PDF"
+                           Click="PartialClearPDF_Click"
+                           Margin="8" />
             </StackPanel>
         </ui:Card>
-        
+
         <!-- Convert PDF Panel -->
         <ui:Card Grid.Row="2" Margin="8">
-            <StackPanel x:Name="ConvertPdfPanel" 
+            <StackPanel x:Name="ConvertPdfPanel"
                         Visibility="Collapsed">
-                <ui:Button Icon="Document24" 
-                          Content="Select Old PDF"
-                          Click="SelectOldPDF_Click"
-                          Margin="0,0,0,8"/>
+                <ui:Button Icon="Document24"
+                           Content="Select Old PDF"
+                           Click="SelectOldPDF_Click"
+                           Margin="0,0,0,8" />
                 <TextBlock x:Name="OldPdfPath"
                            Text="No old file selected"
-                           Margin="0,0,0,8"/>
-                <ui:Button Icon="Document24" 
-                          Content="Select New PDF"
-                          Click="SelectNewPDF_Click"
-                          Margin="0,0,0,8"/>
+                           Margin="0,0,0,8" />
+                <ui:Button Icon="Document24"
+                           Content="Select New PDF"
+                           Click="SelectNewPDF_Click"
+                           Margin="0,0,0,8" />
                 <TextBlock x:Name="NewPdfPath"
                            Text="No new file selected"
-                           Margin="0,0,0,8"/>
-                <ui:Button Icon="ArrowExport24" 
-                          Content="Convert"
-                          Click="ConvertPDF_Click"/>
+                           Margin="0,0,0,8" />
+                <ui:Button Icon="ArrowExport24"
+                           Content="Convert"
+                           Click="ConvertPDF_Click" />
             </StackPanel>
         </ui:Card>
     </Grid>
