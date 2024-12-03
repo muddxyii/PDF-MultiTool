@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        x:Class="PDF_MultiTool.MainWindow"
+        Title="PDF MultiTool v1.2.4"
+        Height="450" Width="600">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ComboBox Name="OperationComboBox"
+                  Width="200"
+                  Margin="10"
+                  HorizontalAlignment="Left"
+                  SelectionChanged="OperationComboBox_OnSelectionChanged">
+            <ComboBoxItem>Clear PDF</ComboBoxItem>
+            <ComboBoxItem>Partial Clear PDF</ComboBoxItem>
+            <ComboBoxItem>Convert PDF Details</ComboBoxItem>
+        </ComboBox>
+        
+        <!-- Clear PDF Panel -->
+        <StackPanel Name="ClearPdfPanel"
+                    Grid.Row="1"
+                    Margin="10"
+                    IsVisible="False">
+            <Button Content="Select PDF"
+                    Click="SelectPDF_Click"
+                    Padding="10,5"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,10"/>
+            <TextBlock Name="SelectedPdfPath"
+                      Text="No file selected"
+                      Margin="0,0,0,10"/>
+            <Button Content="Clear PDF"
+                    Click="ClearPDF_Click"
+                    Padding="10,5"
+                    HorizontalAlignment="Left"/>
+        </StackPanel>
+        
+        <!-- Convert PDF Panel -->
+        <StackPanel Name="ConvertPdfPanel"
+                    Grid.Row="1"
+                    Margin="10"
+                    IsVisible="False">
+            <Button Content="Select Old PDF"
+                    Click="SelectOldPDF_Click"
+                    Padding="10,5"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,10"/>
+            <TextBlock Name="OldPdfPath"
+                      Text="No old file selected"
+                      Margin="0,0,0,10"/>
+            <Button Content="Select New PDF"
+                    Click="SelectNewPDF_Click"
+                    Padding="10,5"
+                    HorizontalAlignment="Left"
+                    Margin="0,0,0,10"/>
+            <TextBlock Name="NewPdfPath"
+                      Text="No new file selected"
+                      Margin="0,0,0,10"/>
+            <Button Content="Convert"
+                    Click="ConvertPDF_Click"
+                    Padding="10,5"
+                    HorizontalAlignment="Left"/>
+        </StackPanel>
+    </Grid>
+</Window>
