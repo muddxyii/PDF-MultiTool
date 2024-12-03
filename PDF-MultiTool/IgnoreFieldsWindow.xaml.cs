@@ -22,7 +22,7 @@ public partial class IgnoreFieldsWindow
         FieldsListView.ItemsSource = _fields;
     }
 
-    private void NewFieldTextBow_KeyDown(object sender, KeyEventArgs e)
+    private void NewFieldTextBox_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.Key == Key.Enter)
         {
