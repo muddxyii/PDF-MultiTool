@@ -5,7 +5,7 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                  mc:Ignorable="d"
-                 Title="PDF MultiTool v1.2.5" Height="450" Width="600"
+                 Title="PDF MultiTool v1.2.6" Height="450" Width="600"
                  Background="{ui:ThemeResource ApplicationBackgroundBrush}">
 
     <Grid>

@@ -47,6 +47,8 @@ public partial class MainWindow
         ConvertPdfPanel.Visibility = selectedItem == "Convert PDF Details" ? Visibility.Visible : Visibility.Collapsed;
     }
 
+    #region Clear Pdf Functions
+    
     private void SelectPDF_Click(object sender, RoutedEventArgs e)
     {
         var openFileDialog = new OpenFileDialog
@@ -123,6 +125,12 @@ public partial class MainWindow
         }
     }
     
+    #endregion
+    
+    #region Partial Clear Pdf Functions
+    
+    #region Ignore Fields Management
+    
     private void LoadIgnoreFields()
     {
         _ignoreFields = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -141,6 +149,20 @@ public partial class MainWindow
             }
         }
     }
+    
+    private void ManageIgnoreFields_Click(object sender, RoutedEventArgs e)
+    {
+        var settingsWindow = new IgnoreFieldsWindow(_configuration, _ignoreFields)
+        {
+            Owner = this
+        };
+        settingsWindow.ShowDialog();
+        
+        // Reload ignore fields after window closes
+        LoadIgnoreFields();
+    }
+    
+    #endregion
     
     private void SelectPartialPDF_Click(object sender, RoutedEventArgs e)
     {
@@ -221,6 +243,10 @@ public partial class MainWindow
         }
     }
 
+    #endregion
+    
+    #region Convert Pdf Functions
+    
     private void SelectOldPDF_Click(object sender, RoutedEventArgs e)
     {
         var openFileDialog = new OpenFileDialog
@@ -289,12 +315,17 @@ public partial class MainWindow
                 
                 if (newForm != null && newForm.GetAllFormFields().Count > 0)
                 {
+                    newForm.SetNeedAppearances(true);
                     foreach (var field in newForm.GetAllFormFields())
                     {
                         if (oldValues.ContainsKey(field.Key) && !string.IsNullOrEmpty(oldValues[field.Key]))
                         {
                             field.Value.SetValue(oldValues[field.Key]);
                             fieldsConverted++;
+                            
+                            // Update font and appearance
+                            field.Value.SetFontSizeAutoScale();
+                            field.Value.RegenerateField();
                         }
                     }
                     MessageBox.Show($"Successfully converted {fieldsConverted} fields.\n\n" +
@@ -314,16 +345,7 @@ public partial class MainWindow
                 MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
-
-    private void ManageIgnoreFields_Click(object sender, RoutedEventArgs e)
-    {
-        var settingsWindow = new IgnoreFieldsWindow(_configuration, _ignoreFields)
-        {
-            Owner = this
-        };
-        settingsWindow.ShowDialog();
-        
-        // Reload ignore fields after window closes
-        LoadIgnoreFields();
-    }
+    
+    #endregion
+    
 }
